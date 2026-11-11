@@ -1,0 +1,12 @@
+project:
+  type: default
+  output-dir: outputs
+  execute-dir: project
+
+format:
+  html:
+    toc: true
+    code-overflow: wrap
+    code-copy: true
+    embed-resources: true
+    theme: cosmo

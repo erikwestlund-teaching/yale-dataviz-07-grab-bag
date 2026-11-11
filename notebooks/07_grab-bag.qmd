@@ -1,0 +1,17 @@
+---
+title: "Grab Bag"
+---
+
+## Task
+
+Draw a study flow diagram and a causal DAG. Specify the assumptions behind each arrow and inspect adjustment sets. Prompts are on the course page.
+
+```{r}
+library(dagitty)
+```
+
+## Analysis
+
+```{r}
+
+```

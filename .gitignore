@@ -1,0 +1,14 @@
+.DS_Store
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+.Renviron
+.env
+.quarto/
+*_files/
+*_cache/
+_freeze/
+outputs/
+inputs/final/
+*.log
