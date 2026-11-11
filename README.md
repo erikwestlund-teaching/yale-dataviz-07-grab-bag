@@ -1,4 +1,4 @@
-# AI-Augmented Analytics for Data Visualization: Module 7: Grab Bag
+# AI-Augmented Analytics for Data Visualization: Module 9: Grab Bag
 
 Prompts are on the course page.
 
