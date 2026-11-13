@@ -1,5 +1,5 @@
 ---
-title: "Grab Bag"
+title: "Process Diagrams and DAGs"
 ---
 
 ## Task

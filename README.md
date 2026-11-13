@@ -1,4 +1,4 @@
-# AI-Augmented Analytics for Data Visualization: Module 9: Grab Bag
+# AI-Augmented Analytics for Data Visualization: Module 9: Process Diagrams and DAGs
 
 Prompts are on the course page.
 
