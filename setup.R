@@ -1,6 +1,6 @@
 # Run once from the project folder: source("setup.R")
 
-packages <- c("dagitty", "ggplot2", "knitr", "rmarkdown")
+packages <- c("dagitty", "dplyr", "tidyr", "forcats", "ggplot2", "knitr", "rmarkdown")
 
 missing <- setdiff(packages, rownames(installed.packages()))
 

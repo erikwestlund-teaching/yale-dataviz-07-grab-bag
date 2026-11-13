@@ -1,15 +1,14 @@
 ---
 name: viz-explore
-description: Use when plotting data in R to understand it: checking distributions, comparing groups, looking for relationships, trends, or problems. Covers choosing the chart that answers the question and quick, accurate ggplot2 figures. For figures meant for an audience, use viz-polish instead.
+description: Use when plotting data in R to understand it: checking distributions, comparing groups, looking for relationships, trends, or problems. Covers choosing the chart that answers the question and quick, accurate ggplot2 figures.
 ---
 
 # Exploring data with ggplot2
 
-Exploratory figures are for the analyst and the team. Make them quickly, make many, and leave them unpolished.
+Exploratory figures are for the analyst and the team. Make many of them quickly, without polishing.
 
 ## Setup
 
-- Set a clean theme once at the top of the notebook with `theme_set(theme_minimal())`, or use the project's own theme.
 - Compute counts and summaries in memory. Don't write a new dataset to draw a figure.
 
 ## Chart choice
@@ -26,15 +25,17 @@ State the question first, one question per figure. Figures or panels the reader 
 | How do estimates compare across many groups? | Dot plot | `geom_point()`, `geom_pointrange()` |
 | Does a pattern differ across subgroups? | Small multiples | `facet_wrap()` or `facet_grid()` |
 
-Avoid pie charts, stacked bars for comparing anything but the bottom segment, dual y axes, and 3-D effects.
+Avoid dual y axes and 3-D effects. In a stacked bar, only the bottom segment sits on a shared baseline.
+
+When the user asks for a specific figure, draw that figure first. Suggest log scales, smoothers, or other changes as next steps.
 
 ## Accuracy checks
 
 - Try more than one histogram bin width, set in the variable's units.
-- Add the points to box plots when there are a few hundred or fewer.
-- Fit both a straight line and a flexible smoother to scatterplots.
+- Box plots hide group size and multiple peaks. With a few hundred points or fewer, overlay the points.
+- Consider comparing a straight line with a flexible smoother on scatterplots.
 - Reduce overplotting with transparency, smaller points, or 2-D bins.
-- Use a log scale for skewed values such as income or counts, and say so in the axis label.
+- Put strongly right-skewed values on a log scale, and say so in the axis label.
 - Start bars at zero. Use points when zero isn't meaningful.
 - Sort categories by value unless they have a natural order.
-- Count the rows ggplot2 drops for missing values.
+- Count the rows ggplot2 drops for missing values before trusting a figure.
