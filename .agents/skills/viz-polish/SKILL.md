@@ -1,65 +1,49 @@
 ---
 name: viz-polish
-description: Use when making or polishing a ggplot2 figure for an audience: a paper, report, poster, slides, or a figure the user calls final. Covers titles that state the finding, direct labels, color used to highlight, honest scales, one project theme, accessibility, and saving at the right size. For quick figures to understand data, use viz-explore.
+description: Use when making or polishing a ggplot2 figure for an audience: a paper, report, poster, slides, or a figure the user calls final. Covers titles, direct labels, color, scales, and a project theme. For quick figures to understand data, use viz-explore.
 ---
 
 # Polishing figures with ggplot2
 
-A polished figure starts as an accurate exploratory figure and adds what a reader needs to understand it without the analyst in the room. Change the presentation, never the data.
+These are tips for figures meant for an audience. Use the ones that suit the figure, the venue, and the user's request. Polishing changes the presentation and leaves the data unchanged.
 
-## Start from the right chart
+## Chart
 
-Keep the chart that answered the question during exploration. If the comparison that matters isn't on a common scale, fix the chart before polishing it. See viz-explore for choosing a chart.
+Start from the chart that worked during exploration. If the comparison that matters is hard to see, consider a different chart before polishing.
 
-## State the finding
+## Title and text
 
-- **Title:** write the result as a sentence, such as "Infant mortality falls as income rises". A title that only names the variables makes the reader find the point alone.
-- **Don't invent a finding.** If the analysis hasn't established a result, use a descriptive title and tell the user.
-- **Subtitle:** say what is measured, for whom, and when.
-- **Caption:** give the data source, the sample size, and any caveat the reader needs, such as how missing values were handled.
-- **Axes:** plain names with units, such as "Income per person (US dollars, log scale)".
-- **Claims:** use associational language. Don't imply causation, and name one limitation in the text.
+- For slides, posters, and reports, a title that states the finding often works well, such as "Infant mortality falls as income rises".
+- For journal figures, follow the journal's style. Many journals put a descriptive title in the figure legend and no title on the figure.
+- Use a descriptive title when the analysis hasn't established a result.
+- A subtitle can give the measure, the population, and the time period.
+- A caption can give the data source, the sample size, and caveats such as how missing values were handled.
+- Label axes with plain names and units, such as "Income per person (US dollars, log scale)".
 
-## Label directly
+## Labels
 
-- Put labels next to the lines or points they name, and remove the legend. Use `ggrepel::geom_text_repel()` when labels would overlap.
-- Label only the observations that support the point. Labeling every point is clutter.
-- Use `annotate()` for a short note where the reader should look. Label reference lines, such as a clinical threshold.
+- Direct labels on lines or points can replace a legend. `ggrepel::geom_text_repel()` helps when labels overlap.
+- Label the observations that support the point, and leave the rest unlabeled.
+- A short note with `annotate()` can point the reader to what matters. Label any reference lines, such as a clinical threshold.
 
-## Use color to highlight
+## Color
 
-- Give color one job. Show most of the data in a muted gray and the groups the finding is about in one strong color.
-- When several categories need their own colors, use a colorblind-safe palette. For ordered values, use a sequential palette.
-- Never let color carry information alone. Pair it with labels, position, or shape. The figure should still work in grayscale.
+- Highlighting one or two groups in a strong color and showing the rest in gray can make the finding easier to see.
+- When several categories need their own colors, use a colorblind-safe palette. Ordered values suit a sequential palette.
+- Pair color with labels, position, or shape where possible, so the figure still reads in grayscale.
 
-## Keep the scales honest
+## Scales
 
 - Bars start at zero.
-- Use the same axis limits across panels the reader will compare. Use free scales only when panels aren't meant to be compared, and say so in the caption.
-- Format numbers as percentages, commas, or currency with the scales package.
+- Panels the reader will compare should use the same axis limits.
 
-## Use one theme for the whole project
+## Theme
 
-Define the project's look once as a theme function and add it to every figure. If the project already has a theme, use it. Remove minor gridlines and anything else that doesn't help the reader.
+If the project has a theme, use it.
 
-## Size it for where it goes
+## Final checks
 
-Set the width, height, and units when saving with `ggsave()`, then open the saved file and check it. Text that is readable on screen can be unreadable at column width.
-
-| Destination | Width × height (inches) |
-|---|---|
-| Journal, one column | 3.5 × 3 |
-| Journal, two columns | 7 × 4.5 |
-| Report or web page | 8 × 5 |
-| Slide | 10 × 5.6 |
-
-Increase the base text size for slides and posters.
-
-## Check before you finish
-
-- **Point:** do the title and caption make the finding clear?
-- **Data:** is it clear what one point or bar is?
-- **Labels:** are all labels readable, with units?
-- **Scale:** does each axis support the claim honestly?
-- **Color:** does color have one job, and does the figure work in grayscale?
-- **Size:** is the text readable at the size the figure will be shown?
+- The title suits the venue.
+- The unit of observation is clear.
+- Labels are readable and have units.
+- Each axis supports the claim.

@@ -5,16 +5,16 @@ description: Use when plotting data in R to understand it: checking distribution
 
 # Exploring data with ggplot2
 
-Exploratory figures are for the analyst and the team. Their job is to show the data accurately so you can understand it. Make them quickly, make many, and don't polish them.
+Exploratory figures are for the analyst and the team. Make them quickly, make many, and leave them unpolished.
 
 ## Setup
 
-- Set a clean theme once at the top of the notebook with `theme_set(theme_minimal())`, or the project's own theme if it has one. Never leave ggplot2's default gray background.
-- Compute counts and summaries in memory. Don't write a new dataset just to draw a figure.
+- Set a clean theme once at the top of the notebook with `theme_set(theme_minimal())`, or use the project's own theme.
+- Compute counts and summaries in memory. Don't write a new dataset to draw a figure.
 
-## Choose the chart from the question
+## Chart choice
 
-Say the question first, one question per figure. Position on a common scale is the most accurate way to compare values, so put the values being compared on one shared axis.
+State the question first, one question per figure. Figures or panels the reader will compare should use the same scale, with the same start and end.
 
 | Question | Chart | ggplot2 |
 |---|---|---|
@@ -28,21 +28,13 @@ Say the question first, one question per figure. Position on a common scale is t
 
 Avoid pie charts, stacked bars for comparing anything but the bottom segment, dual y axes, and 3-D effects.
 
-## Make it accurate
+## Accuracy checks
 
-- **Histograms:** try more than one bin width, set in the variable's units. The default 30 bins can hide or invent features.
-- **Groups:** a box plot hides group size and multiple peaks. With a few hundred points or fewer, add the points.
-- **Relationships:** fit a straight line and a flexible smoother. If they disagree, the relationship isn't linear.
-- **Overplotting:** lower transparency, use smaller points, or bin in 2-D.
-- **Skewed variables:** use a log scale for values such as income or counts, and say so in the axis label.
-- **Bars:** start at zero. When zero isn't meaningful, use points.
-- **Order:** sort categories by value unless they have a natural order.
-- **Missing values:** ggplot2 drops them with a warning. Count what was dropped before trusting the figure.
-- **Unusual values:** look at them and say which observations they are before excluding anything.
-
-## Keep it plain
-
-- Label axes with readable names and units. Variable names are not labels.
-- No titles, annotations, or custom colors. That's polishing.
-- After each figure, write one sentence on what it shows and anything odd.
-- Don't save exploratory figures unless someone needs the file.
+- Try more than one histogram bin width, set in the variable's units.
+- Add the points to box plots when there are a few hundred or fewer.
+- Fit both a straight line and a flexible smoother to scatterplots.
+- Reduce overplotting with transparency, smaller points, or 2-D bins.
+- Use a log scale for skewed values such as income or counts, and say so in the axis label.
+- Start bars at zero. Use points when zero isn't meaningful.
+- Sort categories by value unless they have a natural order.
+- Count the rows ggplot2 drops for missing values.

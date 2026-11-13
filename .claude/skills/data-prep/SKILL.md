@@ -5,39 +5,40 @@ description: Shape data for ggplot2. Use whenever reading, filtering, recoding, 
 
 # Data prep for ggplot2
 
-## One row per mark
+## Rows
 
-- Before writing code, say what one point, bar, or line segment is. Shape the data so each row is one of those.
+- Shape the data so each row is one point, bar, or line segment.
 
-## Aggregate by hand when the stat gets in the way
+## Aggregation
 
-- When a figure needs means, percentages, or other summaries, compute them first with `group_by()` and `summarize(.groups = "drop")`. Then plot the values as they are with `geom_col()`, `geom_point()`, or `geom_line()`, which use `stat = "identity"`.
-- Don't rely on `stat_summary()`, `geom_bar()` counting, or `position = "fill"` to do the math. They make the numbers hard to check, and grouping mistakes go unnoticed.
-- Print the summary table before plotting it. The figure should show exactly those numbers.
+- Compute means, percentages, and other summaries with `group_by()` and `summarize(.groups = "drop")` before plotting.
+- Plot the summary values with `geom_col()`, `geom_point()`, or `geom_line()`, which use `stat = "identity"`.
+- Avoid `stat_summary()`, `geom_bar()` counting, and `position = "fill"` for summaries.
+- Print the summary table before plotting it.
 
-## Long, not wide
+## Reshaping
 
-- Columns that hold the same measure for different groups, such as `rate_2020` and `rate_2021`, go long with `pivot_longer()`. Then the group maps to `color`, `fill`, or a facet: one `geom_line()` with `color = series`, never one geom per column.
+- Pivot columns that hold the same measure for different groups, such as `rate_2020` and `rate_2021`, longer with `pivot_longer()`. Map the group to color, fill, or a facet.
 
-## Order and labels live in the data
+## Factor order and labels
 
-- Set factor order before plotting: `fct_reorder()` to sort by value, `fct_relevel()` for a natural order such as age groups, `fct_infreq()` for counts, and `fct_lump_n()` to collapse many small categories into "Other".
-- Recode values into the words the reader should see, such as `"yes"` to "Oil exporter", with `case_when()` or `fct_recode()`. Legends and facet strips then read correctly without extra arguments.
+- Set factor order before plotting: `fct_reorder()` to sort by value, `fct_relevel()` for a natural order such as age groups, `fct_infreq()` for counts, and `fct_lump_n()` to collapse small categories into "Other".
+- Recode values into reader-facing labels, such as `"yes"` to "Oil exporter", with `case_when()` or `fct_recode()`.
 
-## Missing combinations and missing values
+## Missing values
 
-- Use `complete()` to fill in missing group combinations, so dodged bars keep their width and lines don't connect across gaps.
-- Count the rows lost to missing values in the plotted variables and report the number. ggplot2 drops them with only a console warning.
+- Fill in missing group combinations with `complete()`.
+- Count the rows lost to missing values in the plotted variables, and report the number.
 
-## Keep raw units
+## Units
 
-- Don't log-transform or rescale in the data. Use a scale such as `scale_x_log10()` or `scale_y_continuous(labels = scales::label_percent())`, so the axes show real values.
+- Keep raw units in the data. Transform with scales such as `scale_x_log10()` or `scale_y_continuous(labels = scales::label_percent())`.
 
-## Helper data frames for layers
+## Layer data
 
-- Build small, separate data frames for highlighted points, labels, and reference lines. Pass each one to its layer with `data =`. Label a filtered subset, not every row.
+- Build separate data frames for highlighted points, labels, and reference lines. Pass each one to its layer with `data =`.
 
-## Checks
+## Final checks
 
-- Run `count()` on every variable mapped to color, fill, or a facet. Too many levels means lumping or a different design.
-- Don't modify source data files. Write prepared data to a new object.
+- Run `count()` on every variable mapped to color, fill, or a facet.
+- Leave source data files unchanged. Write prepared data to a new object.
